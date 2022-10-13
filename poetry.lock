@@ -1638,7 +1638,7 @@ tester = ["eth-tester[py-evm] (==v0.7.0-beta.1)", "py-geth (>=3.9.1,<4)"]
 type = "git"
 url = "https://github.com/ethereum/web3.py"
 reference = "HEAD"
-resolved_reference = "3d1fd7a8619bb5d64d4fe5a3f32f58f87e148f0b"
+resolved_reference = "630a4062fd1f00a4ac87018a6eb9e64945694376"
 
 [[package]]
 name = "webencodings"
@@ -1692,7 +1692,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.10, <3.11"
-content-hash = "1052aecc8a79763492c077cedd959711ce57be653c386c0f048d1aa343b252ce"
+content-hash = "bc6ba09812bf1f661b7ca9abbeb6c145c7b57d86a6473d24819a5c1255c1e3dc"
 
 [metadata.files]
 aiohttp = [
