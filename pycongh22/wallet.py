@@ -4,6 +4,7 @@ from bip_utils import (
     Bip39Languages,
     Bip39WordsNum,
 )
+from pycongh22.bitcoin import Bitcoin
 from pycongh22.coin_interface import Coin
 from pycongh22.ethereum import Ethereum
 from pycongh22.tezos import Tezos
@@ -12,7 +13,7 @@ from pycongh22.tezos import Tezos
 
 class Wallet:
 
-    coins: list[Coin] = [Tezos(), Ethereum()]
+    coins: list[Coin] = [Tezos(), Ethereum(), Bitcoin()]
 
     mnemonics = ""
 

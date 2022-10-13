@@ -40,17 +40,17 @@ class Tezos(Coin):
         return r.json()
 
     def send(self, to_address: str, amount: str):
-        pytezos.pytezos.using(
+        pytezos = pytezos.pytezos.using(
             shell="https://ghostnet.smartpy.io", key=self.private_key.decode("utf8")
         )
         try:
-            pytezos.pytezos.reveal().autofill().sign().inject()
+            pytezos.reveal().autofill().sign().inject()
         except:
             pass
 
         try:
             tx = (
-                pytezos.pytezos.transaction(
+                pytezos.transaction(
                     destination=to_address, amount=round((int(amount * 1000000)))
                 )
                 .autofill()

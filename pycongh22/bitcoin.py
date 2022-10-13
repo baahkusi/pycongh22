@@ -1,21 +1,21 @@
 from bip_utils import Bip32Slip10Secp256k1
-from bitcoin.wallet import CBitcoinSecret, CBech32BitcoinAddress, P2WPKHBitcoinAddress, CBitcoinAddress
-from bitcoin.core.script import CScript,OP_0
-from bitcoin.core import Hash160
-
+# from bitcoin.wallet import CBitcoinSecret, CBech32BitcoinAddress, P2WPKHBitcoinAddress, CBitcoinAddress
+# from bitcoin.core.script import CScript,OP_0
+# from bitcoin.core import Hash160
+import bitcoin
 class Bitcoin:
     
     name = 'bitcoin'  
     
     @property
     def address(self) -> str:
-        account = CBitcoinSecret.from_secret_bytes(self._private_key_raw)
-        script_pubkey = CScript([OP_0, Hash160(account.pub)])
-        return CBech32BitcoinAddress.from_scriptPubKey(script_pubkey)
+        account = bitcoin.wallet.CBitcoinSecret.from_secret_bytes(self._private_key_raw)
+        script_pubkey = bitcoin.core.script.CScript([bitcoin.core.script.OP_0, bitcoin.core.Hash160(account.pub)])
+        return bitcoin.wallet.CBech32BitcoinAddress.from_scriptPubKey(script_pubkey)
     
     @property
     def private_key(self) -> str:
-        account = CBitcoinSecret.from_secret_bytes(self._private_key_raw)
+        account = bitcoin.wallet.CBitcoinSecret.from_secret_bytes(self._private_key_raw)
         return account.hex()
     
     def seed(self, seed_bytes: str):

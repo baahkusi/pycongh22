@@ -1,6 +1,7 @@
 from bip_utils import Bip32Slip10Secp256k1
 from eth_account import Account
 import requests
+import web3
 
 
 class Ethereum:
@@ -37,4 +38,17 @@ class Ethereum:
         return r.json()["result"]
 
     def send(self, to_address: str, amount: str):
-        return ""
+        w3 = web3.Web3(web3.Web3.HTTPProvider('https://sepolia.infura.io/v3/82de4c56f4364dd899635d8ebbc349cc'))
+        nonce = web3.eth.get_transaction_count(self.address)
+        trx = {
+            'to': web3.toChecksumAddress(to_address),
+            'value': w3.to_wei(float(amount), 'ether'),
+            'gasPrice': web3.to_wei(50, 'gwei'), 
+            'nonce': nonce,
+            'gas': 100000,
+            'chainId': 11155111
+        }
+        signed_tx = web3.eth.account.sign_transaction(trx, self.private_key)
+        tx_hash = web3.eth.send_raw_transaction(signed_tx.rawTransaction)
+        return tx_hash
+        
